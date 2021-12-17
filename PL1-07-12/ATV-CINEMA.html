@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>Atividade Cinema</title>
+    <style type="text/css">
+        .body {
+            text-align: center;
+        }
+
+        .tela {
+            width: 100%;
+            height: 5%;
+            background-color: rgb(34, 32, 32);
+            color: white;
+            text-align: center;
+        }
+    </style>
+    <script language="Javascript">
+        var lugar, i;
+        lugar = new Array();
+        for (i = 0; i < 600; i++) {
+            lugar[i] = false;
+        }
+
+        function reservar(qual) {
+            if (lugar[qual]) {
+                document.getElementById("poltrona" + qual).setAttribute("src", "poltronared.jpg");
+                alert("Este lugar já está ocupado!");
+            }
+            else {
+                lugar[qual] = true;
+                document.getElementById("poltrona" + qual).setAttribute("src", "poltronared.jpg");
+
+                alert("Reserva efetuada com sucesso");
+            }
+        }
+        function Ocupacao() {
+            var k, i, totalV, totalR;
+            k = 0;
+            for (i = 0; i < lugar.length; i++) {
+                if (lugar[i] == 1) {
+                    k++;
+                }
+            }
+            totalR = k * 100 / 600;
+            totalV = (600 - k) * 100 / 600;
+
+            alert("Ocupado: " + totalR.toFixed(2) + "% | Vazio: " + totalV.toFixed(2) + "%");
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name=Form>
+        <center>
+            <script language="Javascript">
+                var meuArray, x, lin, col, i;
+
+                meuArray = new Array(40);
+
+                for (x = 0; x < meuArray.length; ++x) {
+                    meuArray[x] = new Array(15);
+                }
+                document.write("<table>");
+                for (lin = 0; lin < 15; lin++) {
+                    document.write("<tr>");
+                    for (col = 0; col < 40; col++) {
+                        document.write("<td><img id='poltrona" + i + "' width='30' height='30' src='poltronagreen.jpg' onclick='reservar(" + i + ");'></td>");
+                        i++
+                    }
+                }
+                document.write("</tr>");
+                document.write("</table>");
+            </script>
+            <br></br>
+            <div class="tela">TELA</div>
+            <br>
+        </center>
+        <input type="button" value="Ocupação" style="width:100px;height:50px;" onclick="Ocupacao();">
+    </form>
+</body>
+
+</html>
